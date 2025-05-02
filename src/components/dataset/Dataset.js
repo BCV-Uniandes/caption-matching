@@ -17,12 +17,12 @@ export const Dataset = (props) => {
     const fetchData = () => {
         let method = data.method === "ours" ? "osprey" : "ours";
         fetch(
-        `http://127.0.0.1:5001/api/${method}/ids`
+        `https://lambda004.uniandes.edu.co/api/${method}/ids`
         ).then((response) => {
         response.json().then((ids) => {
             let id = ids[(Math.random() * ids.length) | 0].id;
             fetch(
-            `http://127.0.0.1:5001/api/${method}/${id}`
+            `https://lambda004.uniandes.edu.co/api/${method}/${id}`
             ).then((response) => {
                 response.json().then((item) => {
                 let description = item.description;
@@ -41,7 +41,7 @@ export const Dataset = (props) => {
 
 
     const postData = (category) => {
-        fetch(`http://127.0.0.1:5001/api/${data.method}/${data.id}`, {
+        fetch(`https://lambda004.uniandes.edu.co/api/${data.method}/${data.id}`, {
             method: "POST",
             "Content-Type": "application/json",
             body: JSON.stringify({ category }),

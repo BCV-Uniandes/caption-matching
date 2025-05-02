@@ -9,9 +9,9 @@ app = Flask(__name__)
 CORS(app)
 
 # Path to the file containing all descriptions
-DESCRIPTIONS_FILE = "../data/ids.json"
+DESCRIPTIONS_FILE = "/media/SSD6/cigonzalez/data/caption-matching/ids.json"
 # Directory where individual annotation files will be saved
-ANNOTATIONS_DIR = "../data"
+ANNOTATIONS_DIR = "/media/SSD6/cigonzalez/data/caption-matching"
 METHODS = ["osprey", "ours"]
 
 # List of valid categories (add or remove according to your Cityscapes setup)
@@ -54,7 +54,7 @@ def get_next_annotation(method):
     return jsonify(pending), 200
 
 
-@app.route("/api/<string:method>/<int:item_id>", methods=["GET"])
+@app.route("/api/<string:method>/<string:item_id>", methods=["GET"])
 def get_annotation_by_id(method, item_id):
     """Return the description matching the given ID."""
     # Load descriptions
@@ -67,7 +67,7 @@ def get_annotation_by_id(method, item_id):
     return jsonify(description), 200
 
 
-@app.route("/api/<string:method>/<int:item_id>", methods=["POST"])
+@app.route("/api/<string:method>/<string:item_id>", methods=["POST"])
 def post_annotation(method, item_id):
     """Receive the assigned category and save the annotation file."""
     data = request.get_json()
@@ -86,11 +86,11 @@ def post_annotation(method, item_id):
     with open(out_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     # Update the category
-    data["category"] = category
+    data["category"] = CATEGORIES.index(category)
     # Mark the description as annotated
-    for desc in descriptions[method]:
-        if desc["id"] == item_id:
-            desc["annotated"] = True
+    for d in descriptions[method]:
+        if d["id"] == item_id:
+            d["annotated"] = True
             break
     # Save the updated description
     with open(DESCRIPTIONS_FILE, "w", encoding="utf-8") as f:
@@ -102,5 +102,7 @@ def post_annotation(method, item_id):
 
 
 if __name__ == "__main__":
+
     # Run in development mode; use Gunicorn/Uvicorn or another WSGI server in production
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    # app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run()
