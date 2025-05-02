@@ -35,7 +35,7 @@ CATEGORIES = [
     "train",
     "motorcycle",
     "bicycle",
-    "background",
+    "None of the above",
 ]
 
 
