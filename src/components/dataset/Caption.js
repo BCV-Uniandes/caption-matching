@@ -47,7 +47,7 @@ export const Caption = (props) => {
         <Grid.Column textAlign="center">
         <Form>
             <p style={{ textAlign: "justify" }}>
-                Selecciona la categoría semántica que mejor describe el sujeto de la oración:
+                Select the semantic category that best describes the subject of the sentence:
             </p>
             <FormGroup widths='equal'>
             <FormSelect
@@ -57,7 +57,7 @@ export const Caption = (props) => {
                     setState({ ...state, category: value });
                 }}
                 options={state.categories}
-                placeholder='Categoría'
+                placeholder='category'
             />
             </FormGroup>
         </Form>

@@ -21,7 +21,7 @@ export const Instructions = (props) => {
 
     return (
         <section id="instructions" style={{ padding: "25px" }}>
-            <h1>Instrucciones</h1>
+            <h1>Instructions</h1>
             <p style={{ textAlign: "justify" }}>
                 On the right, you will see a sentence describing a visual entity (such as an object, animal, body part, etc.). You must select from the dropdown menu the semantic category from the list that best describes the subject of the sentence. The list of possible semantic categories is as follows:
             </p>
