@@ -48,6 +48,7 @@ export const Dataset = (props) => {
         })
             .then((response) => {
             if (!response.ok) {
+                console.error("Error en la respuesta del servidor:", response);
                 throw new Error("Error al enviar los datos");
             }
             return response.json();
