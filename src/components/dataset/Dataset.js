@@ -43,7 +43,9 @@ export const Dataset = (props) => {
     const postData = (category) => {
         fetch(`https://lambda004.uniandes.edu.co/api/${data.method}/${data.id}`, {
             method: "POST",
-            "Content-Type": "application/json",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({ category }),
         })
             .then((response) => {
