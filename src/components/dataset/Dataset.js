@@ -7,7 +7,7 @@ import { Instructions } from "./Instructions";
 
 export const Dataset = (props) => {
     const [data, setData] = useState({
-        method: "ours",
+        method: "osprey",
         id: 0,
         description: "",
         category: "",
@@ -15,7 +15,8 @@ export const Dataset = (props) => {
     });
 
     const fetchData = () => {
-        let method = data.method === "ours" ? "osprey" : "ours";
+        // let method = data.method === "ours" ? "osprey" : "ours";
+        let method = data.method
         fetch(
         `https://lambda004.uniandes.edu.co/api/${method}/ids`
         ).then((response) => {
